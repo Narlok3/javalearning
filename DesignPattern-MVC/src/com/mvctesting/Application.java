@@ -29,5 +29,10 @@ public class Application {
 	View view = new View(model);
 	// the controller is sending commands to the model and to the view
 	Controller controller = new Controller(model, view);
+
+	// observer pattern:
+	// we want the controller to be the listener of the view
+	// the view is going to be the subject
+
     }
 }
