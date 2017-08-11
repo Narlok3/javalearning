@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<racine
+   xs:noNamespaceSchemaLocation="test.xsd"
+   xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" 
+   >
+	<tronc nom="tronc secondaire">
+		<branche nom="branche1">
+			<fruit>
+				<nom>Pommes</nom>
+				<couleur>Jaune</couleur>
+			</fruit>
+			<fruit>
+				<nom>Cerise</nom>
+				<couleur>Rouge</couleur>
+			</fruit>
+			<feuille>Feuille normale</feuille>
+		</branche>
+		<branche nom="branche2">
+			<fruit>
+				<nom>Pommes</nom>
+				<couleur>Jaune</couleur>
+			</fruit>
+			<fruit>
+				<nom>Cerise</nom>
+				<couleur>Rouge</couleur>
+			</fruit>
+			<feuille>Feuille normale</feuille>
+			<feuille>Deuxième feuille</feuille>
+		</branche>
+	</tronc>
+</racine>

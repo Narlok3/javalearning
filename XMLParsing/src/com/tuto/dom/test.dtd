@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!ELEMENT racine (tronc)+ >
+
+<!ELEMENT tronc (branche)+ >
+<!ATTLIST tronc nom CDATA #REQUIRED>
+
+<!ELEMENT branche (fruit+, feuille+) >
+<!ATTLIST branche nom CDATA #REQUIRED>
+
+<!ELEMENT fruit (nom,couleur)+ >
+<!ELEMENT nom (#PCDATA) >
+<!ELEMENT couleur (#PCDATA) >
+<!ELEMENT feuille (#PCDATA) >

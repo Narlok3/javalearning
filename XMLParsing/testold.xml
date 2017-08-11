@@ -1,0 +1,33 @@
+<CancellationNoticeOfSecInput creationDate='2017-07-06'>
+	<CODLAN-MSG>en</CODLAN-MSG>
+	<REFOPN-MSG>B7G06STFZ069EHK2</REFOPN-MSG>
+	<NATOPN_LABELS>
+		<NATOPN language='en' table='154' zone='LIB1' code='CT0001'>Miscellaneous - securities</NATOPN>
+		<NATOPN language='fr' table='154' zone='LIB1' code='CT0001'>Divers - titres</NATOPN>
+		<NATOPN language='nl' table='154' zone='LIB1' code='CT0001'>Diversen - effecten</NATOPN>
+		<NATOPN language='de' table='154' zone='LIB1' code='CT0001'>Verschiedenes - Wertpapiere</NATOPN>
+	</NATOPN_LABELS>
+	<LIBOPN>Test PGE 2</LIBOPN>
+	<CPTTIT>
+		<LOCAL>999090063661</LOCAL>
+		<IBAN>BE62999090063661</IBAN>
+	</CPTTIT>
+	<CODTIT>000001RB</CODTIT>
+	<QTETIT>1 P</QTETIT>
+	<COUTIT>1  EUR</COUTIT>
+	<DATVAL>2017-07-06</DATVAL>
+	<CLETIT>Belfius</CLETIT>
+	<CPTTIT_1>
+		<LOCAL>999090063661</LOCAL>
+		<IBAN>BE62999090063661</IBAN>
+	</CPTTIT_1>
+	<SOLTIT>0 P</SOLTIT>
+	<SOLTIT-PCD>1 P</SOLTIT-PCD>
+	<DATOPN>2017-07-06</DATOPN>
+	<NUMEXT>0</NUMEXT>
+	<NUMANX>xx</NUMANX>
+	<IDTTIT>IN000001RB</IDTTIT>
+	<DATANN>2017-07-06</DATANN>
+	<NUMSEQ-PTF>01</NUMSEQ-PTF>
+	<ITTCPT>Compte titres 1</ITTCPT>
+</CancellationNoticeOfSecInput>

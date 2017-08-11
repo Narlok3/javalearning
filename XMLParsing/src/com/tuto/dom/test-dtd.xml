@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE racine SYSTEM "test.dtd">
+<racine>
+<!--commentaire-->
+	<tronc nom="tronc secondaire">
+		<branche nom="branche1">
+			<fruit>
+				<nom>Pommes</nom>
+				<couleur>Jaune</couleur>
+			</fruit>
+			<fruit>
+				<nom>Cerise</nom>
+				<couleur>Rouge</couleur>
+			</fruit>
+			<feuille>Feuille normale</feuille>
+		</branche>
+		<branche nom="branche2">
+			<fruit>
+				<nom>Pommes</nom>
+				<couleur>Jaune</couleur>
+			</fruit>
+			<fruit>
+				<nom>Cerise</nom>
+				<couleur>Rouge</couleur>
+			</fruit>
+			<feuille>Feuille normale</feuille>
+			<feuille>Deuxième feuille</feuille>
+		</branche>
+	</tronc>
+</racine>

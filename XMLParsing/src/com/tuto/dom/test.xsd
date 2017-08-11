@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema 
+   xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+   <!-- Création de l'attribut nom pour les nœuds tronc et branche -->
+   <xs:attribute name="nom" type="xs:string"/>
+  
+   <!-- Création d'un type complexe pour le nœud fruit -->
+   <xs:element name="fruit">
+     <xs:complexType>    
+       <xs:sequence>
+         <xs:element name="nom" type="xs:string" minOccurs="1" maxOccurs="1" />
+         <xs:element name="couleur" type="xs:string" minOccurs="1" maxOccurs="1" />
+       </xs:sequence>
+     </xs:complexType>
+   </xs:element>
+   
+   <!-- Création d'un type complexe pour le nœud branche -->
+   <xs:element name="branche">
+     <xs:complexType>    
+  
+       <xs:sequence>
+         <!-- Ici,  nous utilisons le mot clé ref pour faire référence au type complexe défini plus haut -->
+         <xs:element ref="fruit" minOccurs="1" maxOccurs="unbounded" />
+         <xs:element name="feuille" type="xs:string" minOccurs="1" maxOccurs="unbounded" />
+       </xs:sequence>
+  
+       <xs:attribute ref="nom" use="required" />
+  
+     </xs:complexType>
+   </xs:element>
+
+   <!-- Création d'un type complexe pour le nœud tronc -->
+   <xs:element name="tronc">
+     <xs:complexType>    
+   
+       <xs:sequence>
+         <!-- Ici,  nous utilisons le mot clé ref pour faire référence au type complexe défini plus haut -->
+         <xs:element ref="branche" minOccurs="1" maxOccurs="unbounded" />
+       </xs:sequence>
+   
+       <xs:attribute ref="nom"  use="required" />
+
+     </xs:complexType>
+   </xs:element>
+
+   <!-- Création d'un type complexe pour le nœud tronc -->
+   <xs:element name="racine">
+     <xs:complexType>    
+       <xs:sequence>
+         <!-- Ici,  nous utilisons le mot clé ref pour faire référence au type complexe défini plus haut -->
+         <xs:element ref="tronc" minOccurs="1" maxOccurs="unbounded" />
+       </xs:sequence>
+     </xs:complexType>
+   </xs:element>
+
+</xs:schema>
