@@ -1,15 +1,10 @@
 package com.othello.model;
 
+import com.othello.util.OthelloConstants;
+
 public class Model {
 
-    final static int BLACK = 1; // Declare state of each square
-    final static int WHITE = 2;
-    final static int EMPTY = 0;
-    private final static int WIDTH = 10;
-    private final static int HEIGHT = 10;
-    private final int board[][] = new int[getWidth()][getHeight()];
-    final static int OFFBOARD = -1;
-
+    private final int board[][] = new int[OthelloConstants.WIDTH][OthelloConstants.HEIGHT];
     private int turn;
 
     public Model() {
@@ -17,60 +12,143 @@ public class Model {
     }
 
     public Model(Model another) {
-	for (int i = 0; i < getHeight(); i++) {
-	    for (int j = 0; j < getWidth(); j++) {
-		getBoard()[i][j] = another.getBoard()[i][j];
-	    }
-	}
+    	for (int i = 0; i < OthelloConstants.HEIGHT; i++) {
+    		for (int j = 0; j < OthelloConstants.WIDTH; j++) {
+    			getBoard()[i][j] = another.getBoard()[i][j];
+    		}
+    	}
     }
 
     public void initGame(Model game) {
 
-	setTurn(BLACK);
-	// System.out.println("Turn is: " + turn);
+    	setTurn(OthelloConstants.BLACK);
 
-	// Initialize off-board squares
-	for (int i = 0; i < game.getWidth(); i++) {
-	    game.getBoard()[i][0] = OFFBOARD;
-	    game.getBoard()[i][game.getWidth() - 1] = OFFBOARD;
-	    game.getBoard()[0][i] = OFFBOARD;
-	    game.getBoard()[game.getHeight() - 1][i] = OFFBOARD;
-	}
+    	// Initialize game board to be empty except for initial setup
+    	for (int i = 0; i < OthelloConstants.HEIGHT ; i++) {
+    		for (int j = 0; j < OthelloConstants.WIDTH ; j++) {
+    			game.getBoard()[i][j] = OthelloConstants.EMPTY;
+    		}
+    	}
 
-	// Initialize game board to be empty except for initial setup
-	for (int i = 1; i < game.getHeight() - 1; i++) {
-	    for (int j = 1; j < game.getWidth() - 1; j++) {
-		game.getBoard()[i][j] = EMPTY;
-	    }
-	}
-
-	game.getBoard()[game.getHeight() / 2 - 1][game.getWidth() / 2 - 1] = WHITE;
-	game.getBoard()[game.getHeight() / 2][game.getWidth() / 2 - 1] = BLACK;
-	game.getBoard()[game.getHeight() / 2 - 1][game.getWidth() / 2] = BLACK;
-	game.getBoard()[game.getHeight() / 2][game.getWidth() / 2] = WHITE;
-    }
-
-    /**
-     * Return width.
-     * @return width
-     */
-    public static int getWidth() {
-	return WIDTH;
-    }
-
-    public static int getHeight() {
-	return HEIGHT;
+    	game.getBoard()[OthelloConstants.HEIGHT / 2 - 1][OthelloConstants.WIDTH / 2 - 1] = OthelloConstants.WHITE;
+    	game.getBoard()[OthelloConstants.HEIGHT / 2][OthelloConstants.WIDTH / 2 - 1] = OthelloConstants.BLACK;
+    	game.getBoard()[OthelloConstants.HEIGHT / 2 - 1][OthelloConstants.WIDTH  / 2] = OthelloConstants.BLACK;
+    	game.getBoard()[OthelloConstants.HEIGHT / 2][OthelloConstants.WIDTH / 2] = OthelloConstants.WHITE;
     }
 
     public int[][] getBoard() {
-	return board;
+    	return board;
     }
 
     public int getTurn() {
-	return turn;
+    	return turn;
     }
 
     public void setTurn(int turn) {
-	this.turn = turn;
+    	this.turn = turn;
+    }
+    
+    public boolean legalMove(int v, int h, int color, boolean flip){
+    	boolean legal = false;
+    	
+    	if (board[v][h] == OthelloConstants.EMPTY){
+    		int posX;
+    		int posY;
+    		boolean found;
+    		int current;
+    		
+    		for (int x = -1; x <= 1; x++){
+    			for (int y = -1; y <= 1; y++){
+    				found = false;
+    				// Variables to keep track of where the algorithm is and
+    				// whether it has found a valid move
+    				posX = h + x;
+    				posY = v + y;
+
+    				try{
+    					current = board[posY][posX];
+    				} catch (ArrayIndexOutOfBoundsException e){
+    					continue;
+    				}
+    				
+    				// Check the first cell in the direction specified by x and y
+    				// If the cell is empty or contains the same color
+    				// skip the rest of the algorithm to begin checking another direction
+    				if (current == OthelloConstants.EMPTY || current == color){
+    					continue;
+    				}
+    					
+    				// Otherwise, check along that direction
+    				while (!found){
+    					posX += x;
+    					posY += y;
+    					try{
+    						current = board[posY][posX];
+    					} catch (ArrayIndexOutOfBoundsException e){
+    						break;
+    					}
+    						
+    					if (current == color){
+    						found = true;
+    						legal = true;
+    							
+    						// If flip is true, reverse the directions and start flipping until 
+    						// the algorithm reaches the original location
+    						if (flip) {		
+    							posX -= x;
+								posY -= y;
+								current = board[posY][posX];
+    							while(current!=OthelloConstants.EMPTY){
+    								board[posY][posX] = color;
+									posX -= x;
+									posY -= y;
+									current = board[posY][posX];
+    							}
+    						}
+    					}
+    					else if(current == OthelloConstants.EMPTY ||(posX == 0 && x<0) || (posX == 7 && x>0)
+    					|| (posY == 0 && y<0) || (posY == 7 && y>0)){
+    						found=true;
+    					}
+    				}
+    			}
+    		}
+    	}
+    	if(legal && flip){
+    		board[v][h] = color;
+    	}
+        return legal;
+    }
+    
+    public String computeScore(Model game){
+
+    	int blackScore=0;
+    	int whiteScore=0;
+    	
+    	for (int i = 0; i < OthelloConstants.HEIGHT ; i++) {
+    		for (int j = 0; j < OthelloConstants.WIDTH ; j++) {
+    			if(game.getBoard()[i][j] == OthelloConstants.BLACK){
+    				blackScore++;
+    			} else if(game.getBoard()[i][j] == OthelloConstants.WHITE){
+    				whiteScore++;
+    			}
+    		}
+    	}
+    	String result = (blackScore + "-" + whiteScore);
+    	return result;
+    }
+    
+    public boolean checkEndGame(Model game){
+    	//if we can't find a legal move, we return true
+    	boolean result=true;
+  
+    	for (int i = 0; i < OthelloConstants.HEIGHT ; i++) {
+    		for (int j = 0; j < OthelloConstants.WIDTH ; j++) {
+    			if(legalMove(i,j,getTurn(),false)){
+					return false;
+    			}
+    		}
+    	}	
+    	return result;
     }
 }

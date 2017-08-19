@@ -14,12 +14,12 @@ public class NewActionListener implements ActionListener {
     private OthelloController controller;
 
     public NewActionListener(OthelloController controller) {
-	this.controller = controller;
+    	this.controller = controller;
     }
 
     @Override
     public void actionPerformed(ActionEvent ae) {
-	controller.newGame();
+    	controller.newGame();
     }
 
 }

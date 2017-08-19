@@ -1,4 +1,4 @@
-package com.othello.view;
+/*package com.othello.view;
 
 import javax.swing.JFrame;
 
@@ -17,7 +17,7 @@ public class OthelloEcran {
     public OthelloEcran(OthelloController controller) {
 	this.controller = controller;
 	ecran = new JFrame();
-	OthelloPanel othelloPanel = new OthelloPanel(controller);
+	OthelloPanel othelloPanel = new OthelloPanel(controller, this);
 	ecran.setTitle(TITRE_ECRAN);
 	ecran.setSize(FRAME_WIDTH, FRAME_HEIGHT);
 	ecran.setJMenuBar(new OthelloMenu(controller));
@@ -25,4 +25,13 @@ public class OthelloEcran {
 	ecran.setContentPane(othelloPanel);
 	ecran.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
+
+	public OthelloPanel getOthelloPanel() {
+		return othelloPanel;
+	}
+
+	public void setOthelloPanel(OthelloPanel othelloPanel) {
+		this.othelloPanel = othelloPanel;
+	}
 }
+*/
