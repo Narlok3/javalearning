@@ -5,7 +5,7 @@ package com.othello.interfaces;
 
 public interface IOthelloController {
 
-    public void setView(IView view);
+    public void setView(IOthelloView view);
 
     public void showAbout();
 

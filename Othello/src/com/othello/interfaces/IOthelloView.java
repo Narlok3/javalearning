@@ -2,7 +2,7 @@ package com.othello.interfaces;
 //mauvais design: a corriger
 import com.othello.view.OthelloPanel;
 
-public interface IView {
+public interface IOthelloView {
 
     public void print();
 

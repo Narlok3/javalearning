@@ -1,14 +1,14 @@
 package com.othello.controller;
 
 import com.othello.interfaces.IOthelloController;
-import com.othello.interfaces.IView;
+import com.othello.interfaces.IOthelloView;
 import com.othello.model.Model;
 import com.othello.util.OthelloConstants;
 
 public class OthelloController implements IOthelloController {
 
     private Model model;
-    private IView view;
+    private IOthelloView view;
     private String score;
     private boolean showLegalMoves;
 
@@ -17,7 +17,7 @@ public class OthelloController implements IOthelloController {
     }
 
     @Override
-    public void setView(IView view) {
+    public void setView(IOthelloView view) {
     	this.view = view;
     }
 
@@ -68,7 +68,6 @@ public class OthelloController implements IOthelloController {
 			String[] individualScores = score.split("-");
 			System.out.println("Black score : " + individualScores[0] + " White score : " + individualScores[1]);
 			this.view.refreshView();
-			//this.view.refreshView(String score) // prevent weird call
 			if(model.checkEndGame(this.model)==true){
 				System.out.println("FIN DU JEU");
 				endGame();

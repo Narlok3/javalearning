@@ -1,11 +1,15 @@
 package com.othello.model;
 
+import java.util.ArrayList;
+
 import com.othello.util.OthelloConstants;
 
 public class Model {
 
     private final int board[][] = new int[OthelloConstants.WIDTH][OthelloConstants.HEIGHT];
     private int turn;
+    //ArrayList<int[][]> boardStates;
+    
 
     public Model() {
 
@@ -22,6 +26,8 @@ public class Model {
     public void initGame(Model game) {
 
     	setTurn(OthelloConstants.BLACK);
+    	
+    	ArrayList<int[][]> boardStates = new ArrayList<int[][]>();
 
     	// Initialize game board to be empty except for initial setup
     	for (int i = 0; i < OthelloConstants.HEIGHT ; i++) {
@@ -34,6 +40,9 @@ public class Model {
     	game.getBoard()[OthelloConstants.HEIGHT / 2][OthelloConstants.WIDTH / 2 - 1] = OthelloConstants.BLACK;
     	game.getBoard()[OthelloConstants.HEIGHT / 2 - 1][OthelloConstants.WIDTH  / 2] = OthelloConstants.BLACK;
     	game.getBoard()[OthelloConstants.HEIGHT / 2][OthelloConstants.WIDTH / 2] = OthelloConstants.WHITE;
+    	
+    	boardStates.add(board);
+    	System.out.println("BoardStates content : " + boardStates.toString());
     }
 
     public int[][] getBoard() {
@@ -116,6 +125,7 @@ public class Model {
     	}
     	if(legal && flip){
     		board[v][h] = color;
+    		//boardStates.add(board);
     	}
         return legal;
     }

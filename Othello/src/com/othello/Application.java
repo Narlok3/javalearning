@@ -4,7 +4,7 @@ import javax.swing.SwingUtilities;
 
 import com.othello.controller.OthelloController;
 import com.othello.model.Model;
-import com.othello.view.View;
+import com.othello.view.OthelloView;
 
 public class Application {
     public static void main(String[] args) {
@@ -22,7 +22,7 @@ public class Application {
     public static void runApp() {
     	Model model = new Model();
     	OthelloController controller = new OthelloController(model);
-    	View view = new View(controller);
+    	OthelloView view = new OthelloView(controller);
     	controller.setView(view);
     	controller.start();
     }

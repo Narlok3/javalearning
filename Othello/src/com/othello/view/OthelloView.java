@@ -15,10 +15,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import com.othello.controller.OthelloController;
-import com.othello.interfaces.IView;
+import com.othello.interfaces.IOthelloView;
 import com.othello.util.OthelloConstants;
 
-public class View implements IView {
+public class OthelloView implements IOthelloView {
 
     private JFrame ecran;
     private OthelloPanel othelloPanel;
@@ -32,7 +32,7 @@ public class View implements IView {
     private final static int FRAME_HEIGHT = 557;
     private final static String ABOUT = "C'est le jeu de l'Othello.";
 
-    public View(OthelloController controller) {
+    public OthelloView(OthelloController controller) {
     	this.controller = controller;
     	ecran = new JFrame();
     	
