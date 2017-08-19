@@ -23,13 +23,8 @@ public class Application {
     public static void runApp() {
 
 	Model model = new Model();
-	// The view represents the data from the model.
-	// it will have to import classes from the model packages
-	// we'll have to pass a reference of the model to the view
-	View view = new View(model);
-	// the controller is sending commands to the model and to the view
-	OthelloController controller = new OthelloController(model, view);
-
+	OthelloController controller = new OthelloController(model);
+	View view = new View(controller);
 	// observer pattern:
 	// we want the controller to be the listener of the view
 	// the view is going to be the subject

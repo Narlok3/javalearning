@@ -10,9 +10,8 @@ public class OthelloController implements IOthelloController {
     private Model model;
     private View view;
 
-    public OthelloController(Model model, View view) {
+    public OthelloController(Model model) {
 	this.model = model;
-	this.view = view;
     }
 
     @Override
@@ -37,7 +36,16 @@ public class OthelloController implements IOthelloController {
 
     @Override
     public void start() {
-	// TODO Auto-generated method stub
+	model.initGame(model);
+    }
+
+    /**
+     * Return model.
+     *
+     * @return model
+     */
+    public Model getModel() {
+	return model;
     }
 
 }

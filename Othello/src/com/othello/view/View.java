@@ -1,87 +1,41 @@
 package com.othello.view;
 
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
 
 import com.othello.controller.OthelloController;
-import com.othello.model.Model;
 
-public class View extends JFrame implements ActionListener {
+public class View implements ActionListener {
 
-    private Model model;
-    private OthelloController controller;
-    private JButton helloButton;
-    private JButton goodByeButton;
+    private JFrame ecran;
+    private OthelloPanel othelloPanel;
 
-    public View(Model model) {
-	super("MVC Demo");
+    private final static String TITRE_ECRAN = "Othello";
+    private final static int FRAME_WIDTH = 530;
+    private final static int FRAME_HEIGHT = 557;
+    private final static String ABOUT = "C'est le jeu de l'Othello.";
+    private final static String WIN = "Gagn�.";
+    private final static String LOSE = "Perdu.";
 
-	this.model = model;
-
-	helloButton = new JButton("Hello!");
-	goodByeButton = new JButton("Good Bye");
-
-	// layout manager set to GridBagLayout
-	// it tells the window which layout manager to use
-
-	setLayout(new GridBagLayout());
-
-	GridBagConstraints gc = new GridBagConstraints();
-	gc.anchor = GridBagConstraints.CENTER;
-	gc.gridx = 1;
-	gc.gridy = 1;
-	gc.gridheight = 0;
-	gc.gridwidth = 0;
-	gc.weightx = 1;
-	gc.weighty = 1;
-	gc.fill = GridBagConstraints.NONE;
-
-	add(helloButton, gc);
-
-	gc.anchor = GridBagConstraints.BASELINE;
-	gc.gridx = 1;
-	gc.gridy = 2;
-	gc.gridheight = 0;
-	gc.gridwidth = 0;
-	gc.weightx = 1;
-	gc.weighty = 1;
-	gc.fill = GridBagConstraints.NONE;
-
-	add(goodByeButton, gc);
-	// the button is our subject
-	// addActionListener takes an object of type ActionListener
-	// ie an object that implements the ActionListener interface
-	helloButton.addActionListener(this);
-	goodByeButton.addActionListener(this);
-	// anonymous class template
-	goodByeButton.addActionListener(new ActionListener() {
-	    @Override
-	    public void actionPerformed(ActionEvent e) {
-		System.out.println("Sorry to see you go");
-	    }
-	});
-
-	setSize(600, 500);
-	setDefaultCloseOperation(EXIT_ON_CLOSE);
-	setVisible(true);
-
-	setJMenuBar(new OthelloMenu(controller));
+    public View(OthelloController controller) {
+	ecran = new JFrame();
+	ecran.setTitle(TITRE_ECRAN);
+	ecran.setSize(FRAME_WIDTH, FRAME_HEIGHT);
+	ecran.setJMenuBar(new OthelloMenu(controller));
+	othelloPanel = new OthelloPanel(controller);
+	ecran.setContentPane(othelloPanel);
+	ecran.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	// window.setContentPane(content);
+	// window.setSize(530,557);
+	ecran.setLocation(100, 100);
+	ecran.setVisible(true);
     }
 
-    // Observer pattern
     @Override
     public void actionPerformed(ActionEvent e) {
+	// TODO Auto-generated method stub
 
-	JButton source = (JButton) e.getSource();
-	if (source == helloButton) {
-	    System.out.println("Hello there");
-	} else {
-	    System.out.println("Some other button");
-	}
     }
 }
