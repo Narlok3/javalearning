@@ -1,6 +1,7 @@
 package com.othello.util;
 
 public class OthelloConstants {
+	//replace with enums
     public final static int BLACK = 1; // Declare state of each square
     public final static int WHITE = 2;
     public final static int EMPTY = 0;

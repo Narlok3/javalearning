@@ -17,5 +17,5 @@ public interface IOthelloController {
 
     public void start();
     
-    public void playTurn(Integer i, Integer j);
+    public void playTurn(int i, int j);
 }

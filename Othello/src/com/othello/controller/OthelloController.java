@@ -58,7 +58,7 @@ public class OthelloController implements IOthelloController {
 	}
 
 	@Override
-	public void playTurn(Integer i, Integer j) {
+	public void playTurn(int i, int j) {
 		if (model.legalMove(i, j, model.getTurn(), true)) {
 			if (model.getTurn() == OthelloConstants.BLACK)
 				model.setTurn(OthelloConstants.WHITE);
@@ -78,10 +78,6 @@ public class OthelloController implements IOthelloController {
 		String[] individualScores = score.split("-");
 		System.out.println("Black score : " + individualScores[0] + " White score : " + individualScores[1]);
 		return score;
-	}
-
-	public void setScore(String score) {
-		this.score = score;
 	}
 
 	public boolean isShowLegalMoves() {

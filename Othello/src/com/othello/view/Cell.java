@@ -1,17 +1,17 @@
 package com.othello.view;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.GridLayout;
 
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
 public class Cell extends JPanel {
 
-	// Indicate the row and column of this cell in the board
-	private int GridRow;
+	private int GridRow; // Indicate the row and column of this cell in the board
 	private int GridColumn;
-
+	private ImageLabel pieceLabel;
 	private OthelloPanel parent;
 
 	public Cell(int GridRow, int GridColumn, OthelloPanel GUI) {
@@ -20,10 +20,23 @@ public class Cell extends JPanel {
 		this.GridRow = GridRow;
 		this.GridColumn = GridColumn;
 		parent = GUI;
-		//idea for go : no line border, try to draw lines in the panel
-		setLayout(new GridLayout()); // => les bouttons dans ce layout prennent
-										// toute la taille disponible
+		//GridLayout: les bouttons dans ce layout prennent toute la taille disponible
+		setLayout(new BorderLayout()); // => boutons fonctionnent tjs (?) + full size label
 		setBorder(new LineBorder(Color.black, 1)); // Set cell's border
 		setBackground(Color.green);
+		pieceLabel = new ImageLabel("");
+		this.add(pieceLabel);
+	}
+	
+	public void setPieceIcon(ImageIcon pieceIcon) {
+		this.pieceLabel.setIcon(pieceIcon);
+	}
+
+	public int getGridRow() {
+		return GridRow;
+	}
+
+	public int getGridColumn() {
+		return GridColumn;
 	}
 }

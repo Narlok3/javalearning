@@ -4,15 +4,15 @@ import java.util.ArrayList;
 import com.othello.util.OthelloConstants;
 
 public class Model {
-	
-	//scope errors when I don't use final arrays
-	//what can I do about it?
+
+	// scope errors when I don't use final arrays
+	// what can I do about it?
 	private final int board[][] = new int[OthelloConstants.WIDTH][OthelloConstants.HEIGHT];
 	private int turn;
 	private final ArrayList<int[][]> boardStates = new ArrayList<int[][]>();
 
 	public Model() {
-		
+
 	}
 
 	public Model(Model another) {
@@ -26,7 +26,8 @@ public class Model {
 	public void initGame(Model game) {
 
 		setTurn(OthelloConstants.BLACK);
-
+		boardStates.removeAll(boardStates); // reset the boardstates array,
+											// surely there is a better way?
 		// Initialize game board to be empty except for initial setup
 		for (int i = 0; i < OthelloConstants.HEIGHT; i++) {
 			for (int j = 0; j < OthelloConstants.WIDTH; j++) {
@@ -39,8 +40,8 @@ public class Model {
 		game.getBoard()[OthelloConstants.HEIGHT / 2 - 1][OthelloConstants.WIDTH / 2] = OthelloConstants.BLACK;
 		game.getBoard()[OthelloConstants.HEIGHT / 2][OthelloConstants.WIDTH / 2] = OthelloConstants.WHITE;
 
-		//boardStates.add(board.clone()); clone doesn't work because
-		//it seems to create a new reference for the same content?
+		// boardStates.add(board.clone()); clone doesn't work because
+		// it seems to create a new reference for the same content?
 	}
 
 	public int[][] getBoard() {
@@ -162,23 +163,23 @@ public class Model {
 	}
 
 	public void saveBoard() {
-		//there must be a better way to do that?
+		// there must be a better way to do that?
 		int tmpBoard[][] = new int[OthelloConstants.WIDTH][OthelloConstants.HEIGHT];
 		for (int i = 0; i < OthelloConstants.HEIGHT; i++) {
 			for (int j = 0; j < OthelloConstants.WIDTH; j++) {
-					tmpBoard[i][j]=board[i][j];
+				tmpBoard[i][j] = board[i][j];
 			}
 		}
 		boardStates.add(tmpBoard);
 	}
-	
+
 	public void rollBackMove() throws ArrayIndexOutOfBoundsException {
-		//si annulation impossible (tableau vide) => exception
+		// si annulation impossible (tableau vide) => exception
 		int tmpBoard[][] = new int[OthelloConstants.WIDTH][OthelloConstants.HEIGHT];
 		tmpBoard = boardStates.get(boardStates.size() - 2);
 		for (int i = 0; i < OthelloConstants.HEIGHT; i++) {
 			for (int j = 0; j < OthelloConstants.WIDTH; j++) {
-				board[i][j]=tmpBoard[i][j];
+				board[i][j] = tmpBoard[i][j];
 			}
 		}
 		boardStates.remove(boardStates.size() - 1);
