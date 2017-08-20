@@ -9,7 +9,9 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 //test class to resize image
 public class ImageLabel extends JLabel{
-    private Image _myimage;
+
+	private static final long serialVersionUID = 1L;
+	private Image _myimage;
 
     public ImageLabel(String text){
         super(text);

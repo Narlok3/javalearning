@@ -5,40 +5,35 @@ import com.othello.util.OthelloConstants;
 
 public class Model {
 
-	// scope errors when I don't use final arrays
-	// what can I do about it?
-	private final int board[][] = new int[OthelloConstants.WIDTH][OthelloConstants.HEIGHT];
+	//final array : the reference to that array can never change
 	private int turn;
+	private final int board[][] = new int[OthelloConstants.WIDTH][OthelloConstants.HEIGHT];
 	private final ArrayList<int[][]> boardStates = new ArrayList<int[][]>();
-
+	//private int board[][];
+	//private ArrayList<int[][]> boardStates;
+	//one final array vs a new array for each new game ?
 	public Model() {
 
 	}
+	
+	public void initGame() {
 
-	public Model(Model another) {
-		for (int i = 0; i < OthelloConstants.HEIGHT; i++) {
-			for (int j = 0; j < OthelloConstants.WIDTH; j++) {
-				getBoard()[i][j] = another.getBoard()[i][j];
-			}
-		}
-	}
-
-	public void initGame(Model game) {
-
+		//board = new int[OthelloConstants.WIDTH][OthelloConstants.HEIGHT];
+		//boardStates = new ArrayList<int[][]>();	
 		setTurn(OthelloConstants.BLACK);
 		boardStates.removeAll(boardStates); // reset the boardstates array,
 											// surely there is a better way?
 		// Initialize game board to be empty except for initial setup
 		for (int i = 0; i < OthelloConstants.HEIGHT; i++) {
 			for (int j = 0; j < OthelloConstants.WIDTH; j++) {
-				game.getBoard()[i][j] = OthelloConstants.EMPTY;
+				board[i][j] = OthelloConstants.EMPTY;
 			}
 		}
 
-		game.getBoard()[OthelloConstants.HEIGHT / 2 - 1][OthelloConstants.WIDTH / 2 - 1] = OthelloConstants.WHITE;
-		game.getBoard()[OthelloConstants.HEIGHT / 2][OthelloConstants.WIDTH / 2 - 1] = OthelloConstants.BLACK;
-		game.getBoard()[OthelloConstants.HEIGHT / 2 - 1][OthelloConstants.WIDTH / 2] = OthelloConstants.BLACK;
-		game.getBoard()[OthelloConstants.HEIGHT / 2][OthelloConstants.WIDTH / 2] = OthelloConstants.WHITE;
+		board[OthelloConstants.HEIGHT / 2 - 1][OthelloConstants.WIDTH / 2 - 1] = OthelloConstants.WHITE;
+		board[OthelloConstants.HEIGHT / 2][OthelloConstants.WIDTH / 2 - 1] = OthelloConstants.BLACK;
+		board[OthelloConstants.HEIGHT / 2 - 1][OthelloConstants.WIDTH / 2] = OthelloConstants.BLACK;
+		board[OthelloConstants.HEIGHT / 2][OthelloConstants.WIDTH / 2] = OthelloConstants.WHITE;
 
 		// boardStates.add(board.clone()); clone doesn't work because
 		// it seems to create a new reference for the same content?
@@ -130,16 +125,16 @@ public class Model {
 		return legal;
 	}
 
-	public String computeScore(Model game) {
+	public String computeScore() {
 
 		int blackScore = 0;
 		int whiteScore = 0;
 
 		for (int i = 0; i < OthelloConstants.HEIGHT; i++) {
 			for (int j = 0; j < OthelloConstants.WIDTH; j++) {
-				if (game.getBoard()[i][j] == OthelloConstants.BLACK) {
+				if (board[i][j] == OthelloConstants.BLACK) {
 					blackScore++;
-				} else if (game.getBoard()[i][j] == OthelloConstants.WHITE) {
+				} else if (board[i][j] == OthelloConstants.WHITE) {
 					whiteScore++;
 				}
 			}
@@ -148,7 +143,7 @@ public class Model {
 		return result;
 	}
 
-	public boolean checkEndGame(Model game) {
+	public boolean checkEndGame() {
 		// if we can't find a legal move, we return true
 		boolean result = true;
 

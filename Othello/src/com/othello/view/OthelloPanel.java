@@ -41,20 +41,20 @@ public class OthelloPanel extends JPanel {
     	for (int i = 0; i < OthelloConstants.HEIGHT ; i++) {
     		for (int j = 0; j < OthelloConstants.WIDTH ; j++) {
     			// Draw the discs
-    			if (controller.getModel().getBoard()[i][j] == OthelloConstants.BLACK) {
-    				/*cell[i][j].setBackground(Color.black); //to replace with an image
-    				//ImageLabel label = new ImageLabel("");
-    				//label.setIcon(blackStone);
-    				//cell[i][j].add(label);*/
+    			switch(controller.getModel().getBoard()[i][j]){
+    			case OthelloConstants.BLACK:
     				cell[i][j].setPieceIcon(blackStone);
-    			} else if (controller.getModel().getBoard()[i][j] == OthelloConstants.WHITE) {
+    				break;
+    			case OthelloConstants.WHITE:
     				cell[i][j].setPieceIcon(whiteStone);
-    			} else if (controller.getModel().getBoard()[i][j] == OthelloConstants.EMPTY){
+    				break;
+    			case OthelloConstants.EMPTY:
     				cell[i][j].setPieceIcon(null);
     				cell[i][j].setBackground(Color.green);
     				if(showLegalMoves && controller.getModel().legalMove(i, j, controller.getModel().getTurn(), false)){
     					cell[i][j].setBackground(Color.gray);
     				}
+    				break;
     			}
     		}
     	}

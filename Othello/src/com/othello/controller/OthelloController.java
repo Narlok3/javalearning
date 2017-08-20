@@ -33,9 +33,9 @@ public class OthelloController implements IOthelloController {
 
 	@Override
 	public void newGame() {
-		model.initGame(this.model);
+		model.initGame();
 		model.saveBoard();
-		score = model.computeScore(this.model);
+		score = model.computeScore();
 		view.refreshView();
 	}
 
@@ -64,10 +64,10 @@ public class OthelloController implements IOthelloController {
 				model.setTurn(OthelloConstants.WHITE);
 			else
 				model.setTurn(OthelloConstants.BLACK);
-			score = model.computeScore(this.model);
+			score = model.computeScore();
 			model.saveBoard(); // should the model manage that himself?
 			this.view.refreshView();
-			if (model.checkEndGame(this.model) == true) {
+			if (model.checkEndGame() == true) {
 				System.out.println("FIN DU JEU");
 				endGame();
 			}
@@ -91,7 +91,7 @@ public class OthelloController implements IOthelloController {
 				model.setTurn(OthelloConstants.WHITE);
 			else
 				model.setTurn(OthelloConstants.BLACK);
-			score = model.computeScore(this.model);
+			score = model.computeScore();
 			this.view.refreshView();
 		} catch (ArrayIndexOutOfBoundsException e) {
 			System.out.println("Impossible d'annuler le coup");
