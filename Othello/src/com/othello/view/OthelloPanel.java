@@ -41,8 +41,7 @@ public class OthelloPanel extends JPanel {
     		}
     	}
     	System.out.println("test");
-    	setCell(cell);
-    	//updatePanels(cell);
+    	setCell(cell); //there is something I don't understand about array scopes...
     }
 
     public void updatePanels(Cell[][] cell, boolean showLegalMoves) {

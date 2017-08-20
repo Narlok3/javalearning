@@ -6,6 +6,7 @@ import javax.swing.JMenuItem;
 
 import com.othello.controller.OthelloController;
 import com.othello.view.actions.AboutActionListener;
+import com.othello.view.actions.CancelMoveActionListener;
 import com.othello.view.actions.ExitActionListener;
 import com.othello.view.actions.NewActionListener;
 import com.othello.view.actions.ShowMovesActionListener;
@@ -34,6 +35,11 @@ public class OthelloMenu extends JMenuBar {
     	JMenuItem menu_showMoves = new JMenuItem("Basculer l'affichage des coups légaux");
     	menu_showMoves.addActionListener(new ShowMovesActionListener(controller));
     	options.add(menu_showMoves);
+    	options.addSeparator();
+    	
+    	JMenuItem menu_cancelmove = new JMenuItem("Annuler le coup");
+    	menu_cancelmove.addActionListener(new CancelMoveActionListener(controller));
+    	options.add(menu_cancelmove);
     			
     	about = new JMenu("A propos");
     	JMenuItem menu_about = new JMenuItem("A propos");
