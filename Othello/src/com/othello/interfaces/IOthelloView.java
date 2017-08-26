@@ -1,6 +1,4 @@
 package com.othello.interfaces;
-//mauvais design: a corriger
-import com.othello.view.OthelloPanel;
 
 public interface IOthelloView {
 
@@ -14,6 +12,6 @@ public interface IOthelloView {
 
     public void printEndGame();
 
-	public void refreshView();
+    public void refreshView();
 
 }

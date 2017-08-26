@@ -12,10 +12,10 @@ public interface IOthelloController {
     public void quit();
 
     public void newGame();
-    
+
     public void endGame();
 
     public void start();
-    
+
     public void playTurn(int i, int j);
 }

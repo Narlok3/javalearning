@@ -33,15 +33,18 @@ public class OthelloView implements IOthelloView {
 	miscPanel = new JPanel();
 	userTurn = new JLabel();
 	scoreBoard = new JLabel();
+	othelloPanel = new OthelloPanel(controller);
+
 	miscPanel.setLayout(new GridLayout(1, 2));
 	miscPanel.add(userTurn);
 	miscPanel.add(scoreBoard);
+
 	userTurn.setHorizontalAlignment(JLabel.CENTER);
 	scoreBoard.setHorizontalAlignment(JLabel.CENTER);
+
 	ecran.setTitle(TITRE_ECRAN);
 	ecran.setSize(FRAME_WIDTH, FRAME_HEIGHT);
 	ecran.setJMenuBar(new OthelloMenu(controller));
-	othelloPanel = new OthelloPanel(controller);
 
 	ecran.add(othelloPanel, BorderLayout.CENTER); // othello at the center
 	ecran.add(miscPanel, BorderLayout.PAGE_END); // misc at the bottom

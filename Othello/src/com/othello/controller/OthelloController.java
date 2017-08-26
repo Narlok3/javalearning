@@ -33,7 +33,7 @@ public class OthelloController implements IOthelloController {
     @Override
     public void newGame() {
 	model.initGame();
-	score = model.computeScore(); // model should notify that?
+	score = model.getScore(); // model should notify that?
 	view.refreshView();
     }
 
@@ -59,7 +59,7 @@ public class OthelloController implements IOthelloController {
     @Override
     public void playTurn(int i, int j) {
 	if (model.legalMove(i, j, true)) {
-	    score = model.computeScore();
+	    score = model.getScore();
 	    view.refreshView();
 	    if (model.checkEndGame() == true) {
 		System.out.println("FIN DU JEU");
@@ -69,7 +69,7 @@ public class OthelloController implements IOthelloController {
     }
 
     public String getScore() {
-	score = model.computeScore();
+	score = model.getScore();
 	String[] individualScores = score.split("-");
 	System.out.println("Black score : " + individualScores[0]
 		+ " White score : " + individualScores[1]);
@@ -83,7 +83,7 @@ public class OthelloController implements IOthelloController {
     public void cancelMove() {
 	try {
 	    model.rollBackMove();
-	    score = model.computeScore(); // model should notify about it?
+	    score = model.getScore(); // model should notify about it?
 	    view.refreshView();
 	} catch (ArrayIndexOutOfBoundsException e) {
 	    System.out.println("Impossible d'annuler le coup");

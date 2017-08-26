@@ -1,18 +1,18 @@
 package com.othello.util;
 
+import java.awt.Color;
+
 public class OthelloConstants {
-    // replace with enums
-    public final static int BLACK = 1; // Declare state of each square
-    public final static int WHITE = 2;
-    public final static int EMPTY = 0;
+
     public final static int WIDTH = 8;
     public final static int HEIGHT = 8;
+    public final static Color backGround = new Color(255, 212, 128);
 
     public enum Turn {
 	BLACK, WHITE;
     }
 
-    public enum BoardStatus {
+    public enum CellStatus {
 	BLACK, WHITE, EMPTY, OFFBOARD
     }
 }

@@ -7,10 +7,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
+import com.othello.util.OthelloConstants;
+
 public class Cell extends JPanel {
 
-    private int GridRow; // Indicate the row and column of this cell in the
-			 // board
+    private int GridRow;
     private int GridColumn;
     private ImageLabel pieceLabel;
     private OthelloPanel parent;
@@ -26,10 +27,9 @@ public class Cell extends JPanel {
 	setLayout(new BorderLayout()); // => boutons fonctionnent tjs (?) + full
 				       // size label
 	setBorder(new LineBorder(Color.black, 1)); // Set cell's border
-	setBackground(Color.green);
+	setBackground(OthelloConstants.backGround);
 	pieceLabel = new ImageLabel("");
 	this.add(pieceLabel);
-	// this.addMouseListener(new PlayMouseListener(controller));
     }
 
     public void setPieceIcon(ImageIcon pieceIcon) {

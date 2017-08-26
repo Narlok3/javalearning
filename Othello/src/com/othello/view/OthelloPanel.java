@@ -41,17 +41,16 @@ public class OthelloPanel extends JPanel {
     public void updatePanels(boolean showLegalMoves) {
 	for (int i = 0; i < OthelloConstants.HEIGHT; i++) {
 	    for (int j = 0; j < OthelloConstants.WIDTH; j++) {
-		// Draw the discs
 		switch (controller.getModel().getBoard()[i][j]) {
-		case OthelloConstants.BLACK:
+		case BLACK: // use an observer instead of fetching the info?
 		    cell[i][j].setPieceIcon(blackStone);
 		    break;
-		case OthelloConstants.WHITE:
+		case WHITE:
 		    cell[i][j].setPieceIcon(whiteStone);
 		    break;
-		case OthelloConstants.EMPTY:
+		case EMPTY:
 		    cell[i][j].setPieceIcon(null);
-		    cell[i][j].setBackground(Color.green);
+		    cell[i][j].setBackground(OthelloConstants.backGround);
 		    if (showLegalMoves
 			    && controller.getModel().legalMove(i, j, false)) {
 			cell[i][j].setBackground(Color.gray);
@@ -60,13 +59,5 @@ public class OthelloPanel extends JPanel {
 		}
 	    }
 	}
-    }
-
-    public Cell[][] getCell() {
-	return cell;
-    }
-
-    public void setCell(Cell[][] cell) {
-	this.cell = cell;
     }
 }
