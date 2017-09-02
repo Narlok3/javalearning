@@ -1,0 +1,71 @@
+package com.othello.view;
+
+import javax.swing.AbstractListModel;
+import javax.swing.JFrame;
+import javax.swing.JList;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.WindowConstants;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+
+public class ListHistory {
+
+    private JList jList1;
+    private JPanel jPanel1;
+    private JTextArea jTextArea1;
+
+    public ListHistory() {
+	initComponents();
+    }
+
+    private void initComponents() {
+	JFrame f = new JFrame();
+	jPanel1 = new JPanel();
+	jList1 = new JList();
+	jTextArea1 = new JTextArea();
+
+	jList1.setModel(new AbstractListModel() {
+
+	    String[] strings = { "Item 1", "Item 2" };
+
+	    @Override
+	    public int getSize() {
+		return strings.length;
+	    }
+
+	    @Override
+	    public Object getElementAt(int i) {
+		return strings[i];
+	    }
+	});
+	jList1.addListSelectionListener(new ListSelectionListener() {
+
+	    @Override
+	    public void valueChanged(ListSelectionEvent evt) {
+		jList1ValueChanged(evt);
+	    }
+	});
+
+	jTextArea1.setColumns(20);
+	jTextArea1.setRows(5);
+
+	jPanel1.add(jList1);
+	jPanel1.add(jTextArea1);
+	f.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+	f.add(jPanel1);
+	f.pack();
+	f.setVisible(true);
+    }
+
+    private void jList1ValueChanged(javax.swing.event.ListSelectionEvent evt) {
+	// set text on right here
+	String s = (String) jList1.getSelectedValue();
+	if (s.equals("Item 1")) {
+	    jTextArea1.setText("You clicked on list 1");
+	}
+	if (s.equals("Item 2")) {
+	    jTextArea1.setText("You clicked on list 2");
+	}
+    }
+}

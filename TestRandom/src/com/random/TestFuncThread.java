@@ -8,6 +8,14 @@ public class TestFuncThread {
 	    Thread th = new Thread(TestFuncThread::threadRun);
 	    th.start();
 	}
+
+	Thread oldThread = new Thread(new Runnable() {
+	    @Override
+	    public void run() {
+		threadRun();
+	    }
+	});
+	oldThread.start();
     }
 
     static void threadRun() {
