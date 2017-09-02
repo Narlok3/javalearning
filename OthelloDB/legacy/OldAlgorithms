@@ -12,3 +12,14 @@
 	 * for (int i = 0; i < a.length; i++) { d[i] = a[i].clone(); }
 	 */
     }
+    
+    
+    Object rowData[][] = {
+		{ "PlaceHolderDate", controller.getModel().getScore(),
+			controller.getModel().getTurn(),
+			controller.getCurrentPlayer().getName() },
+		{ gamesHistory.get(0).get("Date"),
+			gamesHistory.get(0).get("Score"),
+			gamesHistory.get(0).get("Turn"), "Row1-Column4" } };
+	Object columnNames[] = { "Date", "Score", "Turn", "Player" };
+	JTable table = new JTable(rowData, columnNames);

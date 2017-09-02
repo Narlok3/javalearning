@@ -44,9 +44,11 @@ public class OthelloPanel extends JPanel {
 		switch (controller.getModel().getBoard()[i][j]) {
 		case BLACK: // use an observer instead of fetching the info?
 		    cell[i][j].setPieceIcon(blackStone);
+		    cell[i][j].setBackground(OthelloConstants.backGround);
 		    break;
 		case WHITE:
 		    cell[i][j].setPieceIcon(whiteStone);
+		    cell[i][j].setBackground(OthelloConstants.backGround);
 		    break;
 		case EMPTY:
 		    cell[i][j].setPieceIcon(null);

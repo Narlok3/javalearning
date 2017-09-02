@@ -23,22 +23,26 @@ public class OthelloMenu extends JMenuBar {
 	menu_new.addActionListener((event -> controller.newGame()));
 	fichier.add(menu_new);
 	fichier.addSeparator();
-	
+
 	JMenuItem menu_login = new JMenuItem("User login");
 	menu_login.addActionListener(new LoginActionListener(controller));
 	fichier.add(menu_login);
 	fichier.addSeparator();
-	
+
 	JMenuItem menu_save = new JMenuItem("Sauvegarder la partie");
 	menu_save.addActionListener(new SaveActionListener(controller));
 	fichier.add(menu_save);
-	fichier.addSeparator();
-	
+
 	JMenuItem menu_load = new JMenuItem("Charger la derniere partie");
 	menu_load.addActionListener(event -> controller.loadLastGame());
 	fichier.add(menu_load);
+
+	JMenuItem menu_histo = new JMenuItem(
+		"Afficher l'historique des parties");
+	menu_histo.addActionListener(event -> controller.retrieveHistory());
+	fichier.add(menu_histo);
 	fichier.addSeparator();
-	
+
 	JMenuItem menu_exit = new JMenuItem("Quitter");
 	menu_exit.addActionListener(event -> controller.quit());
 	fichier.add(menu_exit);
